@@ -9,7 +9,7 @@
 ## TEAM MEMBERS
 *   **Aquino, Anthony** - ant6769
 *   **Mazo, Cassandra Denise** - cassandramazo-sys
-*   **Yap, Janine Lizette** - janineyap-wq
+*   **Yap, Janine Lizzette** - janineyap-wq
 
 ---
 
