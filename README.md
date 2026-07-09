@@ -1,4 +1,4 @@
-# LBYCPOB-FinalProject--AegisResort-
+# LBYCPOB-FinalProject-AegisResort-
 # AegisResort: Dynamic Amenity & Guest Management System
 
 ## PROJECT PROPOSAL: RESORT MANAGEMENT SYSTEM
