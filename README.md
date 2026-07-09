@@ -27,7 +27,7 @@ The primary objective of this system is to engineer a centralized, intelligent p
 ---
 
 ## BRIEF DESCRIPTION
-VibeResort is an automated management application that handles room bookings, facility access, and lost-and-found logging. The core feature is a dynamic permission system: when a guest buys a "Day Tour" package, the system grants them access only to the Restaurant and Pool, while restricting them from Rooms, the Gym, or Event Rooms.
+AegisResort is an automated management application that handles room bookings, facility access, and lost-and-found logging. The core feature is a dynamic permission system: when a guest buys a "Day Tour" package, the system grants them access only to the Restaurant and Pool, while restricting them from Rooms, the Gym, or Event Rooms.
 
 ---
 
