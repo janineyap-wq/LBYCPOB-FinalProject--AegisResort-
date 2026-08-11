@@ -1,10 +1,11 @@
 package com.aegisresort.service;
 
-import com.aegisresort.model.LostItem;
+import com.aegisresort.model.LostItemEntity;
 import java.util.List;
 
 public interface LogisticsService {
-    LostItem registerLostItem(String description, String location, String guestId);
-    List<LostItem> findItemsByGuest(String guestId);
+    LostItemEntity registerLostItem(String description, String location, String guestId);
+    List<LostItemEntity> findItemsByGuest(String guestId);
+    List<LostItemEntity> getAllLostItems();
     boolean claimLostItem(String itemId);
 }
