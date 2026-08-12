@@ -5,7 +5,6 @@ import com.aegisresort.model.*;
 import com.aegisresort.repository.LostItemRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -27,17 +26,17 @@ public class SecurityScannerService implements AccessController, LogisticsServic
     }
 
     private void seedInitialData() {
-        // In-memory setup for Facilities
-        facilities.put("ROOM-101", new Room("ROOM-101", "101"));
-        facilities.put("GYM-01", new Gym("GYM-01", 10));
-        facilities.put("REST-01", new Restaurant("REST-01", 50));
-        facilities.put("EVENT-01", new EventRoom("EVENT-01", 100));
-        facilities.put("PARK-01", new Parking("PARK-01", 30));
+        // In-memory setup for Facilities (matching Amenity subclass constructors)
+        facilities.put("ROOM-101", new Room("Room 101"));
+        facilities.put("GYM-01", new Gym("Resort Gym", 10));
+        facilities.put("REST-01", new Restaurant("Resort Restaurant", 50));
+        facilities.put("EVENT-01", new EventRoom("Grand Hall Event Room", 100));
+        facilities.put("PARK-01", new Parking("Resort Parking Lot", 30));
 
-        // In-memory setup for Guests
-        Guest g1 = new Guest("G-01", "Alice", PackageTier.DAY_TOUR, LocalDate.now(), LocalDate.now(), true);
-        Guest g2 = new Guest("G-02", "Bob", PackageTier.OVERNIGHT, LocalDate.now(), LocalDate.now().plusDays(2), true);
-        Guest g3 = new Guest("G-03", "Charlie", PackageTier.VIP, LocalDate.now(), LocalDate.now().plusDays(5), true);
+        // In-memory setup for Guests (matching Guest record definition)
+        Guest g1 = new Guest("G-01", "Alice", PackageTier.DAY_TOUR);
+        Guest g2 = new Guest("G-02", "Bob", PackageTier.OVERNIGHT);
+        Guest g3 = new Guest("G-03", "Charlie", PackageTier.VIP);
 
         guests.put(g1.guestId(), g1);
         guests.put(g2.guestId(), g2);
@@ -70,13 +69,13 @@ public class SecurityScannerService implements AccessController, LogisticsServic
                 facility != null ? facility.getFacilityName() : "UNKNOWN");
     }
 
-    // --- LogisticsService Implementation backed by PostgreSQL ---
+    // --- LogisticsService Implementation backed by PostgreSQL / Spring Data JPA ---
 
     @Override
     public LostItemEntity registerLostItem(String description, String location, String guestId) {
         String id = "ITEM-" + (++itemCounter);
         LostItemEntity item = new LostItemEntity(id, description, location, guestId);
-        return lostItemRepository.save(item); // Persists directly to PostgreSQL
+        return lostItemRepository.save(item); // Persists directly to database
     }
 
     @Override
@@ -96,11 +95,10 @@ public class SecurityScannerService implements AccessController, LogisticsServic
             LostItemEntity item = itemOpt.get();
             if (!item.isClaimed()) {
                 item.setClaimed(true);
-                lostItemRepository.save(item); // Updates PostgreSQL record
+                lostItemRepository.save(item); // Updates database record
                 return true;
             }
         }
         return false;
     }
 }
-

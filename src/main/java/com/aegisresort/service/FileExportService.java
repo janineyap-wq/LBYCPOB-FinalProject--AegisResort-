@@ -11,12 +11,7 @@ import java.util.List;
 @Service
 public class FileExportService {
 
-    /**
-     * Converts a list of LostItemEntity records into a CSV binary stream.
-     *
-     * @param items List of lost items fetched from the database
-     * @return ByteArrayInputStream containing formatted CSV data
-     */
+
     public ByteArrayInputStream exportLostItemsToCsv(List<LostItemEntity> items) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -43,9 +38,7 @@ public class FileExportService {
         return new ByteArrayInputStream(out.toByteArray());
     }
 
-    /**
-     * Escapes double quotes inside fields to prevent CSV format corruption.
-     */
+
     private String sanitizeForCsv(String data) {
         if (data == null) return "";
         return data.replace("\"", "\"\"");

@@ -4,12 +4,19 @@ import com.aegisresort.model.Guest;
 
 public class Parking extends Amenity {
 
-    public Parking(String facilityId, int maxCapacity) {
-        super(facilityId, "Resort Parking Lot", maxCapacity);
+    // Default constructor
+    public Parking(String name) {
+        super(name, 100); // Default capacity of 100 vehicles
+    }
+
+    // Constructor with custom capacity
+    public Parking(String name, int capacity) {
+        super(name, capacity);
     }
 
     @Override
     public boolean checkAccess(Guest guest) {
-        return guest != null && guest.isActive();
+        // Parking is available to all registered resort guests
+        return guest != null;
     }
 }

@@ -1,5 +1,3 @@
-package com.aegisresort.service;
-
 import com.aegisresort.facility.EventRoom;
 import com.aegisresort.facility.Gym;
 import com.aegisresort.facility.Restaurant;
@@ -7,6 +5,7 @@ import com.aegisresort.model.Guest;
 import com.aegisresort.model.LostItemEntity;
 import com.aegisresort.model.PackageTier;
 import com.aegisresort.repository.LostItemRepository;
+import com.aegisresort.service.SecurityScannerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,8 +34,9 @@ class SecurityScannerServiceTest {
 
     @BeforeEach
     void setUp() {
-        dayTourGuest = new Guest("G-01", "Alice", PackageTier.DAY_TOUR, LocalDate.now(), LocalDate.now(), true);
-        vipGuest = new Guest("G-03", "Charlie", PackageTier.VIP, LocalDate.now(), LocalDate.now().plusDays(5), true);
+        // Aligned with Guest record (guestId, name, packageTier)
+        dayTourGuest = new Guest("G-01", "Alice", PackageTier.DAY_TOUR);
+        vipGuest = new Guest("G-03", "Charlie", PackageTier.VIP);
     }
 
     // --- Access Control & Polymorphism Tests ---
@@ -45,7 +44,7 @@ class SecurityScannerServiceTest {
     @Test
     @DisplayName("Day Tour Guest should be DENIED entry to the Gym")
     void dayTourGuestDeniedGym() {
-        Gym gym = new Gym("GYM-01", 10);
+        Gym gym = new Gym("Resort Gym", 10);
 
         boolean accessGranted = scannerService.verifyEntry(dayTourGuest, gym);
 
@@ -55,7 +54,7 @@ class SecurityScannerServiceTest {
     @Test
     @DisplayName("VIP Guest should be GRANTED entry to the Event Room")
     void vipGuestAllowedEventRoom() {
-        EventRoom eventRoom = new EventRoom("EVENT-01", 100);
+        EventRoom eventRoom = new EventRoom("Grand Hall Event Room", 100);
 
         boolean accessGranted = scannerService.verifyEntry(vipGuest, eventRoom);
 
@@ -65,7 +64,7 @@ class SecurityScannerServiceTest {
     @Test
     @DisplayName("Day Tour Guest should be GRANTED entry to the Restaurant")
     void dayTourGuestAllowedRestaurant() {
-        Restaurant restaurant = new Restaurant("REST-01", 50);
+        Restaurant restaurant = new Restaurant("Resort Restaurant", 50);
 
         boolean accessGranted = scannerService.verifyEntry(dayTourGuest, restaurant);
 
@@ -75,8 +74,8 @@ class SecurityScannerServiceTest {
     @Test
     @DisplayName("Full facility must DENY entry regardless of Guest Tier")
     void fullFacilityDeniesEntry() {
-        Gym gym = new Gym("GYM-01", 1);
-        gym.incrementOccupancy(); // Capacity becomes 1/1 (Full)
+        Gym gym = new Gym("Resort Gym", 1);
+        gym.setCurrentOccupancy(1); // Capacity becomes 1/1 (Full)
 
         boolean accessGranted = scannerService.verifyEntry(vipGuest, gym);
 

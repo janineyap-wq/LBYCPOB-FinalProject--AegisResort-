@@ -29,7 +29,7 @@ public class LostItemEntity {
         this.isClaimed = false;
     }
 
-    // Getters and Setters
+    // Standard Getters and Setters for JPA
     public String getItemId() { return itemId; }
     public void setItemId(String itemId) { this.itemId = itemId; }
 
@@ -47,4 +47,10 @@ public class LostItemEntity {
 
     public boolean isClaimed() { return isClaimed; }
     public void setClaimed(boolean claimed) { isClaimed = claimed; }
+
+    // --- ALIAS GETTERS (Prevents compiler errors in SecurityScannerService & Controllers) ---
+    public String getId() { return itemId; }
+    public String getLocation() { return locationFound; }
+    public String getGuestId() { return associatedGuestId; }
+    public String getStatus() { return isClaimed ? "CLAIMED" : "UNCLAIMED"; }
 }

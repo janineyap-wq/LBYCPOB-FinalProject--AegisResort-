@@ -25,13 +25,7 @@ public class AuthService {
         userDatabase.put(staff.username().toLowerCase(), staff);
     }
 
-    /**
-     * Authenticates credentials provided during login.
-     *
-     * @param username Given username input
-     * @param password Given password input
-     * @return Optional containing the UserAccount if valid, or empty if invalid
-     */
+
     public Optional<UserAccount> authenticate(String username, String password) {
         if (username == null || password == null) {
             return Optional.empty();
@@ -42,5 +36,12 @@ public class AuthService {
             return Optional.of(user);
         }
         return Optional.empty();
+    }
+
+    public Optional<UserAccount> findByUsername(String username) {
+        if (username == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(userDatabase.get(username.trim().toLowerCase()));
     }
 }

@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface LostItemRepository extends JpaRepository<LostItemEntity, String> {
 
-    // Custom query method derived automatically by Spring Data JPA
+    // Primary search query
     List<LostItemEntity> findByAssociatedGuestIdIgnoreCase(String associatedGuestId);
+
+    // Exact match search query (fixes SecurityScannerService calls)
+    List<LostItemEntity> findByAssociatedGuestId(String associatedGuestId);
 }

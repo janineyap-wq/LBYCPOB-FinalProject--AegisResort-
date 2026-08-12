@@ -16,5 +16,14 @@ public record UserAccount(
         if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("Password cannot be empty.");
         }
+        if (role == null || role.isBlank()) {
+            role = "STAFF"; // Default fallback role
+        }
     }
+
+    // --- OPTIONAL GETTER ALIASES (For compatibility with legacy bean callers) ---
+    public String getUsername() { return username(); }
+    public String getPassword() { return password(); }
+    public String getFullName() { return fullName(); }
+    public String getRole() { return role(); }
 }

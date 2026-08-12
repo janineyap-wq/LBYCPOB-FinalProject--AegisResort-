@@ -2,7 +2,7 @@ package com.aegisresort.controller;
 
 import com.aegisresort.facility.Amenity;
 import com.aegisresort.model.Guest;
-import com.aegisresort.model.LostItem;
+import com.aegisresort.model.LostItemEntity;
 import com.aegisresort.service.SecurityScannerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +26,12 @@ public class ResortApiController {
     }
 
     @PostMapping("/lost-item")
-    public LostItem logLostItem(@RequestParam String desc, @RequestParam String loc, @RequestParam(required = false) String guestId) {
+    public LostItemEntity logLostItem(@RequestParam String desc, @RequestParam String loc, @RequestParam(required = false) String guestId) {
         return service.registerLostItem(desc, loc, guestId);
     }
 
     @GetMapping("/lost-item/guest/{guestId}")
-    public List<LostItem> getLostItemsByGuest(@PathVariable String guestId) {
+    public List<LostItemEntity> getLostItemsByGuest(@PathVariable String guestId) {
         return service.findItemsByGuest(guestId);
     }
 
@@ -41,4 +41,3 @@ public class ResortApiController {
         return success ? "Item marked as CLAIMED." : "Item not found or already claimed.";
     }
 }
-
