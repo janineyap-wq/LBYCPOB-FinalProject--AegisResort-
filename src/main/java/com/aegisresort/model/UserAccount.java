@@ -1,13 +1,11 @@
 package com.aegisresort.model;
 
-/**
- * Domain record holding authorized staff account information.
- */
+
 public record UserAccount(
         String username,
         String password,
         String fullName,
-        String role // e.g., "MANAGER", "SECURITY_OFFICER"
+        String role
 ) {
     public UserAccount {
         if (username == null || username.isBlank()) {
@@ -17,11 +15,11 @@ public record UserAccount(
             throw new IllegalArgumentException("Password cannot be empty.");
         }
         if (role == null || role.isBlank()) {
-            role = "STAFF"; // Default fallback role
+            role = "STAFF";
         }
     }
 
-    // --- OPTIONAL GETTER ALIASES (For compatibility with legacy bean callers) ---
+
     public String getUsername() { return username(); }
     public String getPassword() { return password(); }
     public String getFullName() { return fullName(); }

@@ -16,10 +16,8 @@ public class FileExportService {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try (PrintWriter writer = new PrintWriter(out)) {
-            // Write CSV Header
             writer.println("Item ID,Description,Location Found,Date Logged,Associated Guest,Status");
 
-            // Write Data Rows
             if (items != null) {
                 for (LostItemEntity item : items) {
                     writer.printf("%s,\"%s\",\"%s\",%s,%s,%s%n",

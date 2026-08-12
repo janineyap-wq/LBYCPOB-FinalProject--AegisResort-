@@ -7,7 +7,7 @@ public class LostItem {
     private String description;
     private String location;
     private String guestId;
-    private String status; // e.g., "UNCLAIMED", "CLAIMED"
+    private String status;
     private LocalDateTime dateReported;
 
     public LostItem() {
@@ -24,7 +24,7 @@ public class LostItem {
         this.dateReported = LocalDateTime.now();
     }
 
-    // Getters and Setters
+
     public String getId() {
         return id;
     }
