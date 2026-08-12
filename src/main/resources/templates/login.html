@@ -5,34 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aegis Resort Portal — Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --hotel-gold: #c5a880;
+            --hotel-gold-hover: #b09168;
+            --hotel-dark: #121a24;
+            --hotel-card-bg: rgba(255, 255, 255, 0.95);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(18, 26, 36, 0.55), rgba(18, 26, 36, 0.75)),
+            url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1920') center/cover no-repeat fixed;
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, h5, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .login-card {
+            background: var(--hotel-card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .btn-gold {
+            background-color: var(--hotel-gold);
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            padding: 12px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: var(--hotel-gold-hover);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .form-control:focus {
+            border-color: var(--hotel-gold);
+            box-shadow: 0 0 0 0.25rem rgba(197, 168, 128, 0.25);
+        }
+    </style>
 </head>
-<body class="bg-light d-flex align-items-center vh-100">
+<body class="d-flex align-items-center vh-100">
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-header bg-dark text-white text-center py-3">
-                    <h4 class="mb-0">️ Aegis Resort</h4>
-                    <small>Security &amp; Logistics Management</small>
+        <div class="col-md-5 col-lg-4">
+            <div class="card login-card p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <span class="text-uppercase tracking-widest text-muted small d-block mb-1" style="letter-spacing: 2px;">Welcome To</span>
+                    <h3 class="mb-1 fw-bold text-dark brand-font">Aegis Resort</h3>
+                    <p class="text-muted small">Security &amp; Logistics Management</p>
                 </div>
-                <div class="card-body p-4">
-                    <div th:if="${error}" class="alert alert-danger py-2" th:text="${error}"></div>
 
-                    <form action="/login" method="post">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="admin or staff" required autofocus>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                    </form>
+                <div th:if="${error}" class="alert alert-danger border-0 small text-center py-2 mb-3" th:text="${error}"></div>
 
-
-                </div>
+                <form action="/login" method="post">
+                    <div class="mb-3">
+                        <label class="form-label text-muted small fw-semibold">USERNAME</label>
+                        <input type="text" name="username" class="form-control py-2" placeholder="admin or staff" required autofocus>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted small fw-semibold">PASSWORD</label>
+                        <input type="password" name="password" class="form-control py-2" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-gold w-100 rounded-3">Sign In to Portal</button>
+                </form>
             </div>
         </div>
     </div>
