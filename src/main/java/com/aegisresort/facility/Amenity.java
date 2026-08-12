@@ -8,7 +8,6 @@ public abstract class Amenity {
     private int currentOccupancy;
     private boolean active;
 
-    // Constructor matching subclass super(name, capacity) calls
     public Amenity(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
@@ -16,10 +15,10 @@ public abstract class Amenity {
         this.active = true;
     }
 
-    // Abstract method that every facility subclass must implement
+
     public abstract boolean checkAccess(Guest guest);
 
-    // Business & Access Helper Methods
+
     public boolean isFull() {
         return currentOccupancy >= capacity;
     }
@@ -32,7 +31,7 @@ public abstract class Amenity {
         this.active = active;
     }
 
-    // Getters and Setters
+
     public String getName() {
         return name;
     }

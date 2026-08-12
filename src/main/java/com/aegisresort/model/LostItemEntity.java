@@ -17,7 +17,6 @@ public class LostItemEntity {
     private String associatedGuestId;
     private boolean isClaimed;
 
-    // Default constructor required by JPA
     public LostItemEntity() {}
 
     public LostItemEntity(String itemId, String description, String locationFound, String associatedGuestId) {
@@ -29,7 +28,6 @@ public class LostItemEntity {
         this.isClaimed = false;
     }
 
-    // Standard Getters and Setters for JPA
     public String getItemId() { return itemId; }
     public void setItemId(String itemId) { this.itemId = itemId; }
 
@@ -48,7 +46,7 @@ public class LostItemEntity {
     public boolean isClaimed() { return isClaimed; }
     public void setClaimed(boolean claimed) { isClaimed = claimed; }
 
-    // --- ALIAS GETTERS (Prevents compiler errors in SecurityScannerService & Controllers) ---
+
     public String getId() { return itemId; }
     public String getLocation() { return locationFound; }
     public String getGuestId() { return associatedGuestId; }

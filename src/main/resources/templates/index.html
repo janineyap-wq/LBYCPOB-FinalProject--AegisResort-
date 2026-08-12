@@ -8,10 +8,9 @@
 </head>
 <body class="bg-light">
 
-<!-- Top Navigation Bar with User Session Info -->
 <nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
     <div class="container d-flex justify-content-between align-items-center">
-        <span class="navbar-brand mb-0 h1">🛡️ Aegis Resort Management Portal</span>
+        <span class="navbar-brand mb-0 h1"> Aegis Resort Management Portal</span>
         <div th:if="${currentUser}" class="text-white small d-flex align-items-center">
             <span class="me-3">
                 Logged in as: <strong th:text="${currentUser.fullName}">User Name</strong>
@@ -30,7 +29,6 @@
     </div>
 
     <div class="row g-4">
-        <!-- Security Access Control Module -->
         <div class="col-lg-6">
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-primary text-white">
@@ -59,7 +57,6 @@
                         <button type="submit" class="btn btn-primary w-100 fw-bold">Simulate Keycard Scan</button>
                     </form>
 
-                    <!-- Scan Audit Result Banner -->
                     <div th:if="${scanResult}"
                          class="mt-4 alert"
                          th:classappend="${scanAllowed} ? 'alert-success' : 'alert-danger'">
@@ -75,7 +72,7 @@
         <div class="col-lg-6">
             <div class="card shadow-sm h-100">
                 <div class="card-header bg-secondary text-white">
-                    <h5 class="card-title mb-0">📦 Logistics &amp; Lost Item Management</h5>
+                    <h5 class="card-title mb-0"> Logistics &amp; Lost Item Management</h5>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <!-- Register Item Form -->
@@ -95,10 +92,9 @@
                     <!-- Registry List Header with Download CSV Button -->
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h6 class="fw-bold mb-0">Database Registry</h6>
-                        <a href="/web/export/lost-items" class="btn btn-sm btn-outline-primary fw-bold">📥 Download CSV</a>
+                        <a href="/web/export/lost-items" class="btn btn-sm btn-outline-primary fw-bold"> Download CSV</a>
                     </div>
 
-                    <!-- Registry Item List -->
                     <div class="flex-grow-1 overflow-auto" style="max-height: 280px;">
                         <div th:if="${#lists.isEmpty(lostItems)}" class="text-muted small py-2">
                             No items currently logged in database.
@@ -110,7 +106,7 @@
                                     <strong class="ms-1" th:text="${item.description}"></strong>
                                     <br>
                                     <small class="text-muted">
-                                        📍 Location: <span th:text="${item.locationFound}"></span> |
+                                         Location: <span th:text="${item.locationFound}"></span> |
                                         Guest: <span th:text="${item.associatedGuestId != null ? item.associatedGuestId : 'UNLINKED'}"></span>
                                     </small>
                                 </div>

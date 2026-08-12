@@ -5,7 +5,6 @@ import com.aegisresort.model.PackageTier;
 
 public class Room extends Amenity {
 
-    // Default constructor setting standard room name and capacity
     public Room(String name) {
         super(name, 4); // Default capacity of 4 guests per room
     }

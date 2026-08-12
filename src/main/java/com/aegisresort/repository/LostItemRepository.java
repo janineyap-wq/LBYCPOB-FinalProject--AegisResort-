@@ -9,9 +9,7 @@ import java.util.List;
 @Repository
 public interface LostItemRepository extends JpaRepository<LostItemEntity, String> {
 
-    // Primary search query
     List<LostItemEntity> findByAssociatedGuestIdIgnoreCase(String associatedGuestId);
 
-    // Exact match search query (fixes SecurityScannerService calls)
     List<LostItemEntity> findByAssociatedGuestId(String associatedGuestId);
 }

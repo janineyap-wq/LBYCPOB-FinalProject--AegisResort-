@@ -17,7 +17,6 @@ public class AuthService {
     }
 
     private void seedDefaultAccounts() {
-        // Seed initial authorized staff credentials
         UserAccount admin = new UserAccount("admin", "admin123", "Chief Security Officer", "MANAGER");
         UserAccount staff = new UserAccount("staff", "staff123", "Janine Officer", "SECURITY_OFFICER");
 

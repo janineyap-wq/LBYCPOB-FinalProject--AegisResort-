@@ -19,21 +19,18 @@ public class SecurityScannerService implements AccessController, LogisticsServic
     private final Map<String, Amenity> facilities = new HashMap<>();
     private int itemCounter = 100;
 
-    // Constructor Injection for Spring Data JPA Repository
     public SecurityScannerService(LostItemRepository lostItemRepository) {
         this.lostItemRepository = lostItemRepository;
         seedInitialData();
     }
 
     private void seedInitialData() {
-        // In-memory setup for Facilities (matching Amenity subclass constructors)
         facilities.put("ROOM-101", new Room("Room 101"));
         facilities.put("GYM-01", new Gym("Resort Gym", 10));
         facilities.put("REST-01", new Restaurant("Resort Restaurant", 50));
         facilities.put("EVENT-01", new EventRoom("Grand Hall Event Room", 100));
         facilities.put("PARK-01", new Parking("Resort Parking Lot", 30));
 
-        // In-memory setup for Guests (matching Guest record definition)
         Guest g1 = new Guest("G-01", "Alice", PackageTier.DAY_TOUR);
         Guest g2 = new Guest("G-02", "Bob", PackageTier.OVERNIGHT);
         Guest g3 = new Guest("G-03", "Charlie", PackageTier.VIP);
@@ -69,7 +66,6 @@ public class SecurityScannerService implements AccessController, LogisticsServic
                 facility != null ? facility.getFacilityName() : "UNKNOWN");
     }
 
-    // --- LogisticsService Implementation backed by PostgreSQL / Spring Data JPA ---
 
     @Override
     public LostItemEntity registerLostItem(String description, String location, String guestId) {
@@ -95,7 +91,7 @@ public class SecurityScannerService implements AccessController, LogisticsServic
             LostItemEntity item = itemOpt.get();
             if (!item.isClaimed()) {
                 item.setClaimed(true);
-                lostItemRepository.save(item); // Updates database record
+                lostItemRepository.save(item);
                 return true;
             }
         }
