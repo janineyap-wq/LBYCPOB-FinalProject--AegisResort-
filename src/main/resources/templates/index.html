@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Resort Management Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- Top Navigation Bar with User Session Info -->
+<nav class="navbar navbar-dark bg-dark mb-4 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <span class="navbar-brand mb-0 h1">🛡️ Aegis Resort Management Portal</span>
+        <div th:if="${currentUser}" class="text-white small d-flex align-items-center">
+            <span class="me-3">
+                Logged in as: <strong th:text="${currentUser.fullName}">User Name</strong>
+                <span class="badge bg-primary ms-1" th:text="${currentUser.role}">ROLE</span>
+            </span>
+            <a href="/logout" class="btn btn-sm btn-outline-light">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- Validation Error Banner -->
+    <div th:if="${errorMessage}" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+        <strong>Input Error:</strong> <span th:text="${errorMessage}">Error message here</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="row g-4">
+        <!-- Security Access Control Module -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">🔑 Security Access Scanner</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/web/scan" method="post">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Select Guest</label>
+                            <select name="guestId" class="form-select" required>
+                                <option value="G-01">G-01 — Alice (Day Tour)</option>
+                                <option value="G-02">G-02 — Bob (Overnight)</option>
+                                <option value="G-03">G-03 — Charlie (VIP)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Select Target Facility</label>
+                            <select name="facilityId" class="form-select" required>
+                                <option value="GYM-01">Fitness Center (Gym) — Overnight &amp; VIP</option>
+                                <option value="EVENT-01">Grand Hall Event Room — VIP Only</option>
+                                <option value="REST-01">Resort Restaurant — All Tiers</option>
+                                <option value="PARK-01">Resort Parking Lot — All Tiers</option>
+                                <option value="ROOM-101">Guest Room 101 — Overnight &amp; VIP</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Simulate Keycard Scan</button>
+                    </form>
+
+                    <!-- Scan Audit Result Banner -->
+                    <div th:if="${scanResult}"
+                         class="mt-4 alert"
+                         th:classappend="${scanAllowed} ? 'alert-success' : 'alert-danger'">
+                        <h6 class="alert-heading fw-bold mb-1" th:text="${scanAllowed} ? 'ACCESS GRANTED' : 'ACCESS DENIED'"></h6>
+                        <hr class="my-2">
+                        <p class="mb-0 font-monospace small" th:text="${scanResult}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logistics Lost & Found Module -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="card-title mb-0">📦 Logistics &amp; Lost Item Management</h5>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <!-- Register Item Form -->
+                    <form action="/web/lost-item" method="post" class="mb-4">
+                        <div class="mb-2">
+                            <input type="text" name="desc" class="form-control" placeholder="Item Description (e.g. Leather Wallet)" required>
+                        </div>
+                        <div class="mb-2">
+                            <input type="text" name="loc" class="form-control" placeholder="Location Found (e.g. Pool Deck)" required>
+                        </div>
+                        <div class="mb-2">
+                            <input type="text" name="guestId" class="form-control" placeholder="Associated Guest ID (Optional, e.g. G-01)">
+                        </div>
+                        <button type="submit" class="btn btn-secondary w-100 fw-bold">Register Found Item</button>
+                    </form>
+
+                    <!-- Registry List Header with Download CSV Button -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold mb-0">Database Registry</h6>
+                        <a href="/web/export/lost-items" class="btn btn-sm btn-outline-primary fw-bold">📥 Download CSV</a>
+                    </div>
+
+                    <!-- Registry Item List -->
+                    <div class="flex-grow-1 overflow-auto" style="max-height: 280px;">
+                        <div th:if="${#lists.isEmpty(lostItems)}" class="text-muted small py-2">
+                            No items currently logged in database.
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li th:each="item : ${lostItems}" class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <div>
+                                    <span class="badge bg-dark" th:text="${item.itemId}"></span>
+                                    <strong class="ms-1" th:text="${item.description}"></strong>
+                                    <br>
+                                    <small class="text-muted">
+                                        📍 Location: <span th:text="${item.locationFound}"></span> |
+                                        Guest: <span th:text="${item.associatedGuestId != null ? item.associatedGuestId : 'UNLINKED'}"></span>
+                                    </small>
+                                </div>
+                                <div>
+                                    <span th:if="${item.claimed}" class="badge bg-success">CLAIMED</span>
+                                    <form th:unless="${item.claimed}" th:action="@{'/web/claim/' + ${item.itemId}}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-outline-success">Claim</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
