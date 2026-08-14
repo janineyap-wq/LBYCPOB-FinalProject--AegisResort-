@@ -27,7 +27,6 @@
             border-bottom: 2px solid var(--hotel-gold);
         }
 
-        /* Keyframe Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -42,7 +41,6 @@
             animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* VIP Gold Shimmer Glow */
         @keyframes vipGlow {
             0% {
                 box-shadow: 0 0 8px rgba(197, 168, 128, 0.4);
@@ -62,7 +60,6 @@
             background: linear-gradient(135deg, rgba(255, 250, 240, 0.95) 0%, rgba(244, 236, 225, 0.95) 100%) !important;
         }
 
-        /* Luxury Cards */
         .luxury-card {
             border: none;
             border-radius: 12px;
@@ -108,7 +105,6 @@
             box-shadow: 0 0 0 0.25rem rgba(197, 168, 128, 0.25);
         }
 
-        /* Visual Blueprint Map Styles */
         .map-wrapper {
             background: #0a1118;
             border-radius: 12px;
@@ -129,7 +125,6 @@
             filter: drop-shadow(0px 0px 8px #ffd700);
         }
 
-        /* Pulsing Missing Item Pins */
         @keyframes redPulse {
             0% {
                 r: 6px;
@@ -185,7 +180,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
-    <!-- Visual Illustrated Resort Map -->
     <div class="card luxury-card mb-4">
         <div class="luxury-card-header d-flex justify-content-between align-items-center">
             <div>
@@ -198,7 +192,6 @@
             <div class="map-wrapper position-relative text-center">
                 <svg viewBox="0 0 900 420" class="w-100" style="max-height: 380px;" id="resortMap">
                     <defs>
-                        <!-- Gradients -->
                         <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#0b3c5d"/>
                             <stop offset="100%" stop-color="#1d6a96"/>
@@ -216,7 +209,6 @@
                             <stop offset="100%" stop-color="#1a252f"/>
                         </linearGradient>
 
-                        <!-- Reusable Palm Tree Icon -->
                         <g id="palmTree">
                             <path d="M 0,0 Q -3,15 -5,25 L -2,25 Q 0,15 0,0" fill="#8B5A2B"/>
                             <path d="M -4,0 Q -15,-10 -22,-4 Q -10,2 -4,0" fill="#2d8a4e"/>
@@ -225,54 +217,42 @@
                             <path d="M -4,0 Q 10,8 18,12 Q 5,12 -4,0" fill="#1b5e20"/>
                         </g>
 
-                        <!-- Reusable Umbrella Icon -->
                         <g id="cabanaUmbrella">
                             <circle cx="0" cy="0" r="8" fill="#c5a880"/>
                             <path d="M -8,0 L 8,0 M 0,-8 L 0,8" stroke="#ffffff" stroke-width="1.5"/>
                         </g>
                     </defs>
 
-                    <!-- Base Terrain (Lush Lawn) -->
                     <rect x="0" y="0" width="900" height="420" fill="url(#lawnGrad)"/>
 
-                    <!-- Ocean / Beach Coastline (Top Right) -->
                     <path d="M 520,0 Q 620,80 720,60 T 900,120 L 900,0 Z" fill="url(#oceanGrad)"/>
-                    <!-- Sand Shoreline Fringe -->
                     <path d="M 520,0 Q 620,80 720,60 T 900,120" fill="none" stroke="#e0cda9" stroke-width="8" opacity="0.6"/>
 
-                    <!-- Cobblestone Walkways & Driveways -->
                     <path d="M 120,420 L 120,300 Q 120,200 250,200 T 550,200 L 800,200 L 800,420" fill="none" stroke="#3d372e" stroke-width="24" stroke-linecap="round"/>
                     <path d="M 120,420 L 120,300 Q 120,200 250,200 T 550,200 L 800,200 L 800,420" fill="none" stroke="#c5a880" stroke-width="2" stroke-dasharray="6,6"/>
                     <path d="M 250,200 L 250,110 M 550,200 L 550,110 M 720,200 L 720,310" fill="none" stroke="#3d372e" stroke-width="16"/>
 
-                    <!-- 1. GYM-01: Fitness Center (Modern Dome Structure) -->
                     <g id="struct-GYM-01">
                         <rect x="50" y="40" width="160" height="110" rx="12" fill="url(#roofGrad)" stroke="#c5a880" stroke-width="2"/>
                         <circle cx="130" cy="95" r="30" fill="#1f3a4b" stroke="#00f2fe" stroke-width="1.5"/>
                         <text x="130" y="40" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="1">GYM-01 FITNESS CENTER</text>
                     </g>
 
-                    <!-- 2. REST-01: Resort Restaurant & Infinity Pool -->
                     <g id="struct-REST-01">
-                        <!-- Dining Deck -->
                         <rect x="360" y="30" width="220" height="120" rx="8" fill="#4a3728" stroke="#c5a880" stroke-width="2"/>
-                        <!-- Main Restaurant Pavilion Roof -->
                         <rect x="380" y="40" width="110" height="100" rx="4" fill="url(#roofGrad)"/>
-                        <!-- Infinity Pool -->
                         <rect x="500" y="50" width="65" height="80" rx="6" fill="url(#poolGrad)"/>
                         <use href="#cabanaUmbrella" x="515" y="40"/>
                         <use href="#cabanaUmbrella" x="550" y="40"/>
                         <text x="470" y="22" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="1">REST-01 RESTAURANT &amp; POOL</text>
                     </g>
 
-                    <!-- 3. EVENT-01: Grand Hall Pavilion -->
                     <g id="struct-EVENT-01">
                         <polygon points="700,30 840,30 860,130 680,130" fill="url(#roofGrad)" stroke="#c5a880" stroke-width="2"/>
                         <rect x="720" y="130" width="100" height="15" fill="#c5a880"/> <!-- Pillars -->
                         <text x="770" y="22" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="1">EVENT-01 GRAND HALL</text>
                     </g>
 
-                    <!-- 4. ROOM-101: Luxury Guest Villas -->
                     <g id="struct-ROOM-101">
                         <rect x="50" y="240" width="100" height="90" rx="6" fill="url(#roofGrad)" stroke="#c5a880" stroke-width="1.5"/>
                         <rect x="170" y="240" width="100" height="90" rx="6" fill="url(#roofGrad)" stroke="#c5a880" stroke-width="1.5"/>
@@ -281,15 +261,12 @@
                         <text x="165" y="355" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="1">ROOM-101 GUEST SUITES</text>
                     </g>
 
-                    <!-- 5. PARK-01: Parking Lot & Valet Plaza -->
                     <g id="struct-PARK-01">
                         <rect x="620" y="240" width="220" height="110" rx="10" fill="#1e252b" stroke="#556270" stroke-width="2"/>
-                        <!-- Parking Bays -->
                         <path d="M 650,250 L 650,290 M 690,250 L 690,290 M 730,250 L 730,290 M 770,250 L 770,290 M 810,250 L 810,290" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,4"/>
                         <text x="730" y="375" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="1">PARK-01 VALET &amp; PARKING</text>
                     </g>
 
-                    <!-- Decorative Palm Trees Placement -->
                     <use href="#palmTree" x="30" y="170" transform="scale(1.2)"/>
                     <use href="#palmTree" x="220" y="170" transform="scale(1.2)"/>
                     <use href="#palmTree" x="330" y="120" transform="scale(1.3)"/>
@@ -297,37 +274,30 @@
                     <use href="#palmTree" x="870" y="200" transform="scale(1.4)"/>
                     <use href="#palmTree" x="580" y="370" transform="scale(1.2)"/>
 
-                    <!-- INTERACTIVE CLICK HOTSPOTS (Transparent Overlay Masks) -->
                     <rect id="zone-GYM-01" class="map-hotspot" x="40" y="30" width="180" height="130" rx="12" onclick="selectFacility('GYM-01')"><title>Fitness Center</title></rect>
                     <rect id="zone-REST-01" class="map-hotspot" x="350" y="20" width="240" height="140" rx="12" onclick="selectFacility('REST-01')"><title>Restaurant &amp; Pool</title></rect>
                     <rect id="zone-EVENT-01" class="map-hotspot" x="670" y="20" width="200" height="140" rx="12" onclick="selectFacility('EVENT-01')"><title>Grand Hall</title></rect>
                     <rect id="zone-ROOM-101" class="map-hotspot" x="40" y="230" width="300" height="120" rx="12" onclick="selectFacility('ROOM-101')"><title>Guest Suites</title></rect>
                     <rect id="zone-PARK-01" class="map-hotspot" x="610" y="230" width="240" height="130" rx="12" onclick="selectFacility('PARK-01')"><title>Parking Plaza</title></rect>
 
-                    <!-- Dynamic Red Pins for Lost Items -->
                     <g id="lostItemPins">
                         <th:block th:each="item : ${lostItems}" th:unless="${item.claimed}">
-                            <!-- Fitness Center Pin -->
                             <circle th:if="${#strings.containsIgnoreCase(item.locationFound, 'gym') or #strings.containsIgnoreCase(item.locationFound, 'fitness')}"
                                     cx="130" cy="95" class="missing-pin">
                                 <title th:text="${'Missing: ' + item.description}"></title>
                             </circle>
-                            <!-- Restaurant Pin -->
                             <circle th:if="${#strings.containsIgnoreCase(item.locationFound, 'rest') or #strings.containsIgnoreCase(item.locationFound, 'dining') or #strings.containsIgnoreCase(item.locationFound, 'pool')}"
                                     cx="470" cy="90" class="missing-pin">
                                 <title th:text="${'Missing: ' + item.description}"></title>
                             </circle>
-                            <!-- Grand Hall Pin -->
                             <circle th:if="${#strings.containsIgnoreCase(item.locationFound, 'event') or #strings.containsIgnoreCase(item.locationFound, 'hall')}"
                                     cx="770" cy="80" class="missing-pin">
                                 <title th:text="${'Missing: ' + item.description}"></title>
                             </circle>
-                            <!-- Room Pin -->
                             <circle th:if="${#strings.containsIgnoreCase(item.locationFound, 'room') or #strings.containsIgnoreCase(item.locationFound, 'suite')}"
                                     cx="170" cy="285" class="missing-pin">
                                 <title th:text="${'Missing: ' + item.description}"></title>
                             </circle>
-                            <!-- Parking Pin -->
                             <circle th:if="${#strings.containsIgnoreCase(item.locationFound, 'park') or #strings.containsIgnoreCase(item.locationFound, 'lot')}"
                                     cx="730" cy="290" class="missing-pin">
                                 <title th:text="${'Missing: ' + item.description}"></title>
@@ -340,7 +310,6 @@
     </div>
 
     <div class="row g-4">
-        <!-- Security Access Scanner -->
         <div class="col-lg-6">
             <div class="card luxury-card h-100">
                 <div class="luxury-card-header d-flex justify-content-between align-items-center">
@@ -370,7 +339,6 @@
                         <button type="submit" class="btn btn-dark w-100 py-2 fw-semibold">Simulate Keycard Scan</button>
                     </form>
 
-                    <!-- Dynamic Scan Alert with Gold Shimmer detection for VIP -->
                     <div th:if="${scanResult}"
                          id="scanAlertBox"
                          class="mt-4 alert border-0 shadow-sm animate-fade-in-up"
@@ -387,7 +355,6 @@
             </div>
         </div>
 
-        <!-- Logistics & Lost Items -->
         <div class="col-lg-6">
             <div class="card luxury-card h-100">
                 <div class="luxury-card-header d-flex justify-content-between align-items-center">
@@ -445,7 +412,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Interactive Map Selection & Audio Synthesis -->
 <script th:inline="javascript">
     function selectFacility(facilityId) {
         const select = document.getElementById('facilitySelect');
@@ -495,8 +461,7 @@
         } catch (e) {}
     }
 
-    /*[# th:if="${scanResult}"]*/
-    const scanAllowed = /*[[${scanAllowed}]]*/ false;
+    const scanAllowed = false;
     window.addEventListener('DOMContentLoaded', () => {
         if (scanAllowed) {
             playChime();
@@ -504,7 +469,6 @@
             playHum();
         }
     });
-    /*[/]*/
 </script>
 </body>
 </html>
