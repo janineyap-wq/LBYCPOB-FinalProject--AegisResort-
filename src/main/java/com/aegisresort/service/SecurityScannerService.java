@@ -71,7 +71,7 @@ public class SecurityScannerService implements AccessController, LogisticsServic
     public LostItemEntity registerLostItem(String description, String location, String guestId) {
         String id = "ITEM-" + (++itemCounter);
         LostItemEntity item = new LostItemEntity(id, description, location, guestId);
-        return lostItemRepository.save(item); // Persists directly to database
+        return lostItemRepository.save(item);
     }
 
     @Override
