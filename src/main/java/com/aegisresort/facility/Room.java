@@ -6,10 +6,9 @@ import com.aegisresort.model.PackageTier;
 public class Room extends Amenity {
 
     public Room(String name) {
-        super(name, 4); // Default capacity of 4 guests per room
+        super(name, 4);
     }
 
-    // Constructor with custom capacity
     public Room(String name, int capacity) {
         super(name, capacity);
     }
@@ -20,7 +19,6 @@ public class Room extends Amenity {
             return false;
         }
 
-        // Rooms are restricted to OVERNIGHT and VIP guests
         PackageTier tier = guest.packageTier();
         return tier == PackageTier.OVERNIGHT || tier == PackageTier.VIP;
     }
