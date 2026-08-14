@@ -21,7 +21,7 @@
     </properties>
 
     <dependencies>
-
+        <!-- Web & Thymeleaf Template Engine -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -31,13 +31,13 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-
+        <!-- Form & Input Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-
+        <!-- Spring Data JPA & Databases -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -54,7 +54,7 @@
             <scope>runtime</scope>
         </dependency>
 
-
+        <!-- Unit Testing Framework (JUnit 5 + Mockito) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

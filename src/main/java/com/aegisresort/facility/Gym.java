@@ -5,7 +5,7 @@ import com.aegisresort.model.PackageTier;
 public class Gym extends Amenity {
 
     public Gym(String name) {
-        super(name, 20); // Default capacity of 20
+        super(name, 20);
     }
 
 

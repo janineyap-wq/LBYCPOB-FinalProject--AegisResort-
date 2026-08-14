@@ -6,7 +6,7 @@ import com.aegisresort.model.PackageTier;
 public class EventRoom extends Amenity {
 
     public EventRoom(String name) {
-        super(name, 50); // Default capacity of 50
+        super(name, 50);
     }
 
     public EventRoom(String name, int maxCapacity) {
